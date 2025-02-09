@@ -1,0 +1,9 @@
+arb-dir: lib/localization/l10n
+output-dir: lib/localization/generated
+template-arb-file: ani_en.arb
+output-localization-file: ani_localization.dart
+output-class: S
+nullable-getter: false
+use-escaping: true
+synthetic-package: false
+untranslated-messages-file: untranslated_l10n_messages.txt
