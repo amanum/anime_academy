@@ -18,7 +18,7 @@ class StoreKeys {
   /* #endregion */
 
   /* #region Authentication */
-  static final token = StoreKey<String>('token', secure: true); //TODO: set to true after preparing Apple Team Account
+  static const token = StoreKey<String>('token', secure: true); //TODO: set to true after preparing Apple Team Account
 
   // static final lastUsername = StoreKey<String>('lastUsername', secure: true);
   //
@@ -33,4 +33,7 @@ class StoreKeys {
   // static final sphereType = StoreKey<String>('sphere_type');
   //
   // static final deviceId = StoreKey<String>('deviceId', secure: true);
+
+  /// Состояние приложения
+  static const appState = StoreKey<String>('app_state', secure: true);
 }

@@ -1,6 +1,6 @@
 import 'package:anime_academy/core/entity/user.dart';
-import 'package:anime_academy/data/auth/auth_models.dart';
 import 'package:anime_academy/domain/repository/auth_repository.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -32,7 +32,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       final isAuthenticated = await _authRepository.isAuthenticated();
       if (isAuthenticated) {
-        emit(const AuthSuccess());
+        final user = await _authRepository.getCurrentUser();
+        emit(AuthSuccess(user: user));
       } else {
         emit(const AuthUnauthenticated());
       }
@@ -51,6 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         identifier: event.identifier,
         password: event.password,
       );
+      
       emit(AuthSuccess(user: user));
     } catch (e) {
       emit(AuthFailure(message: 'Ошибка авторизации: ${e.toString()}'));
@@ -68,6 +70,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         email: event.email,
         password: event.password,
       );
+      
       emit(AuthSuccess(user: user));
     } catch (e) {
       emit(AuthFailure(message: 'Ошибка регистрации: ${e.toString()}'));
@@ -81,6 +84,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     try {
       await _authRepository.logout();
+      
       emit(const AuthUnauthenticated());
     } catch (e) {
       emit(AuthFailure(message: 'Ошибка выхода: ${e.toString()}'));

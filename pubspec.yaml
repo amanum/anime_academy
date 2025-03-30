@@ -37,7 +37,7 @@ dependencies:
   get_it: ^7.6.0
   
   # Сеть
-  dio: ^5.3.2
+  dio: ^5.8.0+1
   
   # UI
   cupertino_icons: ^1.0.2
@@ -47,7 +47,7 @@ dependencies:
   carousel_slider: ^5.0.0
   flutter_localizations:
     sdk: flutter
-  shared_preferences: ^2.2.0
+  shared_preferences: ^2.5.2
   flutter_secure_storage: ^9.2.4
 
 dev_dependencies:

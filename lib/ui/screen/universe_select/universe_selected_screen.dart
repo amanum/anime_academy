@@ -1,10 +1,12 @@
 import 'package:anime_academy/ani_config.dart';
+import 'package:anime_academy/bloc/app/app_bloc.dart';
 import 'package:anime_academy/core/entity/universe.dart';
 import 'package:anime_academy/localization/generated/ani_localization.dart';
 import 'package:anime_academy/ui/screen/home/home_screen.dart';
 import 'package:anime_academy/ui/style/ani_colors.dart';
 import 'package:anime_academy/ui/style/ani_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UniverseSelectedScreen extends StatelessWidget {
   const UniverseSelectedScreen(this.universe, {super.key});
@@ -81,11 +83,29 @@ class UniverseSelectedScreen extends StatelessWidget {
                   top: false,
                   child: SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HomeScreen()));
+                    child: BlocBuilder<AppBloc, AppState>(
+                      builder: (context, state) {
+                        return ElevatedButton(
+                          onPressed: () async {
+                            // Сохраняем выбранную вселенную в AppBloc
+                            context.read<AppBloc>().add(
+                              AppSelectUniverseEvent(universe: universe),
+                            );
+                            
+                            // Обновляем данные пользователя перед переходом на главный экран
+                            context.read<AppBloc>().add(
+                              const AppUpdateUserEvent(),
+                            );
+                            
+                            // Переходим на главный экран
+                            Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(builder: (_) => const HomeScreen()),
+                              (route) => false,
+                            );
+                          },
+                          child: Text(S.of(context).start),
+                        );
                       },
-                      child: Text(S.of(context).start),
                     ),
                   ),
                 ),

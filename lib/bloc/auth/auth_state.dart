@@ -1,8 +1,11 @@
 part of 'auth_bloc.dart';
 
 @immutable
-sealed class AuthState {
+sealed class AuthState extends Equatable {
   const AuthState();
+  
+  @override
+  List<Object?> get props => [];
 }
 
 /// Начальное состояние
@@ -16,6 +19,9 @@ class AuthSuccess extends AuthState {
   final User? user;
 
   const AuthSuccess({this.user});
+  
+  @override
+  List<Object?> get props => [user];
 }
 
 /// Состояние отсутствия авторизации
@@ -28,4 +34,7 @@ class AuthFailure extends AuthState {
   final String message;
 
   const AuthFailure({required this.message});
+  
+  @override
+  List<Object> get props => [message];
 } 

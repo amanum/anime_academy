@@ -1,3 +1,4 @@
+import 'package:anime_academy/bloc/app/app_bloc.dart';
 import 'package:anime_academy/core/entity/card_item.dart';
 import 'package:anime_academy/core/entity/universe.dart';
 import 'package:anime_academy/localization/generated/ani_localization.dart';
@@ -6,6 +7,7 @@ import 'package:anime_academy/ui/style/ani_colors.dart';
 import 'package:anime_academy/ui/style/ani_fonts.dart';
 import 'package:anime_academy/ui/widget/image_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,35 +23,41 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             spacing: 20,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('${S.of(context).hello} Absamat 👋',
-                            style: AniFonts.f_16_400),
-                        Text(S.of(context).haveANiceDay,
-                            style: AniFonts.f_28_700),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 56,
-                    height: 56,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AniColors.accent,
-                    ),
-                    child: SizedBox(
-                      height: 45,
-                      width: 45,
-                      child: Image.network(
-                          'https://w7.pngwing.com/pngs/589/151/png-transparent-pixel-art-drawing-naruto-thumbnail.png'),
-                    ),
-                  ),
-                ],
+              BlocBuilder<AppBloc, AppState>(
+                builder: (context, state) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('${S.of(context).hello} ${state.user?.username} 👋',
+                                style: AniFonts.f_16_400),
+                            Text(S.of(context).haveANiceDay,
+                                style: AniFonts.f_28_700),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 56,
+                        height: 56,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AniColors.accent,
+                        ),
+                        child: SizedBox(
+                          height: 45,
+                          width: 45,
+                          child: Image.network(
+                            'https://w7.pngwing.com/pngs/589/151/png-transparent-pixel-art-drawing-naruto-thumbnail.png',
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
               // _Section(
               //   title: S.of(context).knowledgeBattle,

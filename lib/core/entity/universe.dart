@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:anime_academy/core/entity/ani_image.dart';
+import 'package:anime_academy/core/entity/card_item.dart';
 
 /// Модель вселенной аниме
-class Universe {
+class Universe implements CardItem {
   /// Уникальный идентификатор вселенной
   final int id;
   
@@ -16,6 +17,13 @@ class Universe {
   /// URL изображения вселенной
   final AniImage? image;
   final AniImage? descImage;
+
+  @override
+  String get imageUrl => image?.url ?? '';
+  @override
+  String get title => titleRu;
+  @override
+  String get text => descriptionRu ?? '';
 
   Universe({
     required this.id, 
