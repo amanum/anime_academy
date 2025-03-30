@@ -5,5 +5,10 @@
   "onboardingText2": "Some shit 2",
   "onboardingText3": "Some shit 3",
   "next": "Next",
-  "start": "Start"
+  "start": "Start",
+  "all": "All",
+  "knowledgeBattle": "Битва знаний",
+  "comics": "Комиксы",
+  "haveANiceDay": "Have a nice day",
+  "hello": "Hello"
 }

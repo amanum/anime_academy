@@ -23,4 +23,19 @@ class SKk extends S {
 
   @override
   String get start => 'Начать';
+
+  @override
+  String get all => 'Все';
+
+  @override
+  String get knowledgeBattle => 'Битва знаний';
+
+  @override
+  String get comics => 'Комиксы';
+
+  @override
+  String get haveANiceDay => 'Удачного дня!';
+
+  @override
+  String get hello => 'Привет';
 }

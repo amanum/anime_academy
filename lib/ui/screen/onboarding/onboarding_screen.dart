@@ -20,69 +20,71 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: CarouselSlider(
-                options: CarouselOptions(
-                    viewportFraction: 1,
-                    height: double.infinity,
-                    enableInfiniteScroll: false,
-                    onPageChanged: (index, _) {
-                      setState(() {
-                        _currentIndex.value = index;
-                      });
-                    }),
-                carouselController: _sliderController,
-                items: [
-                  /// TODO(umurzakov): refactor images after img/gif/video will be ready
-                  OnboardingSlide(
-                    image: 'assets/images/naruto.png',
-                    text: S.of(context).onboardingText1,
-                  ),
-                  OnboardingSlide(
-                    image: 'assets/images/naruto.png',
-                    text: S.of(context).onboardingText2,
-                  ),
-                  OnboardingSlide(
-                    image: 'assets/images/naruto.png',
-                    text: S.of(context).onboardingText3,
-                  ),
-                ],
-              ),
-            ),
-            SliderDots(
-              count: 3,
-              activeIndex: _currentIndex.value,
-            ),
-            SizedBox(height: 70),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: SizedBox(
-                width: double.infinity,
-                child: ValueListenableBuilder(
-                  valueListenable: _currentIndex,
-                  builder: (context, currentSlide, _) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        if (currentSlide < 2) {
-                          _sliderController.nextPage();
-                        }
-                      },
-                      child: Text(
-                        currentSlide < 2
-                            ? S.of(context).next
-                            : S.of(context).start,
-                      ),
-                    );
-                  },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: CarouselSlider(
+                  options: CarouselOptions(
+                      viewportFraction: 1,
+                      height: double.infinity,
+                      enableInfiniteScroll: false,
+                      onPageChanged: (index, _) {
+                        setState(() {
+                          _currentIndex.value = index;
+                        });
+                      }),
+                  carouselController: _sliderController,
+                  items: [
+                    /// TODO(umurzakov): refactor images after img/gif/video will be ready
+                    OnboardingSlide(
+                      image: 'assets/images/naruto.png',
+                      text: S.of(context).onboardingText1,
+                    ),
+                    OnboardingSlide(
+                      image: 'assets/images/naruto.png',
+                      text: S.of(context).onboardingText2,
+                    ),
+                    OnboardingSlide(
+                      image: 'assets/images/naruto.png',
+                      text: S.of(context).onboardingText3,
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              SliderDots(
+                count: 3,
+                activeIndex: _currentIndex.value,
+              ),
+              SizedBox(height: 70),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ValueListenableBuilder(
+                    valueListenable: _currentIndex,
+                    builder: (context, currentSlide, _) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          if (currentSlide < 2) {
+                            _sliderController.nextPage();
+                          }
+                        },
+                        child: Text(
+                          currentSlide < 2
+                              ? S.of(context).next
+                              : S.of(context).start,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

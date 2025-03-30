@@ -23,4 +23,19 @@ class SEn extends S {
 
   @override
   String get start => 'Start';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get knowledgeBattle => 'Битва знаний';
+
+  @override
+  String get comics => 'Комиксы';
+
+  @override
+  String get haveANiceDay => 'Have a nice day';
+
+  @override
+  String get hello => 'Hello';
 }

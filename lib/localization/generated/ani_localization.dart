@@ -132,6 +132,36 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Start'**
   String get start;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @knowledgeBattle.
+  ///
+  /// In en, this message translates to:
+  /// **'Битва знаний'**
+  String get knowledgeBattle;
+
+  /// No description provided for @comics.
+  ///
+  /// In en, this message translates to:
+  /// **'Комиксы'**
+  String get comics;
+
+  /// No description provided for @haveANiceDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Have a nice day'**
+  String get haveANiceDay;
+
+  /// No description provided for @hello.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello'**
+  String get hello;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
