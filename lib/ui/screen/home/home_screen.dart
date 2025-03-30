@@ -51,108 +51,108 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              _Section(
-                title: S.of(context).knowledgeBattle,
-                items: [
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                ],
-                onAllTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => FullContentListScreen()));
-                },
-              ),
-              _Section(
-                title: S.of(context).comics,
-                items: [
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                  Universe(
-                    id: 1,
-                    title: 'Математика',
-                    description: 'Экзамен на звание чунина',
-                    imageUrl:
-                        'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-                  ),
-                ],
-                onAllTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => FullContentListScreen()));
-                },
-              ),
+              // _Section(
+              //   title: S.of(context).knowledgeBattle,
+              //   items: [
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //   ],
+              //   onAllTap: () {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //         builder: (_) => FullContentListScreen()));
+              //   },
+              // ),
+              // _Section(
+              //   title: S.of(context).comics,
+              //   items: [
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //     Universe(
+              //       id: 1,
+              //       titleRu: 'Математика',
+              //       descriptionRu: 'Экзамен на звание чунина',
+              //       imageUrl:
+              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
+              //     ),
+              //   ],
+              //   onAllTap: () {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //         builder: (_) => FullContentListScreen()));
+              //   },
+              // ),
             ],
           ),
         ),
@@ -200,9 +200,9 @@ class _Section extends StatelessWidget {
               return SizedBox(
                 width: 160,
                 child: ImageCard(
-                  imageUrl: items[index].imageUrl,
-                  title: items[index].title,
-                  text: items[index].description,
+                  image: items[index].image,
+                  title: items[index].titleRu,
+                  text: items[index].descriptionRu,
                 ),
               );
             },

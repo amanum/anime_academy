@@ -27,7 +27,10 @@ class UniverseSelectScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Привет Absamat 👋', style: AniFonts.f_16_400,),
+                  Text(
+                    'Привет Absamat 👋',
+                    style: AniFonts.f_16_400,
+                  ),
                   Text('Удачного дня!', style: AniFonts.f_28_700),
                   SizedBox(height: 40),
                   Text('Выбери свое приключение!', style: AniFonts.f_20_700),
@@ -42,7 +45,8 @@ class UniverseSelectScreen extends StatelessWidget {
                         return GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 12,
                             mainAxisSpacing: 12,
@@ -53,18 +57,20 @@ class UniverseSelectScreen extends StatelessWidget {
                             return GestureDetector(
                               onTap: () {
                                 context.read<UniverseBloc>().add(
-                                  UniverseEventSelect(universeId: universe.id),
-                                );
+                                      UniverseEventSelect(
+                                          universeId: universe.id),
+                                    );
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (_) => const UniverseSelectedScreen(),
+                                    builder: (_) =>
+                                        UniverseSelectedScreen(universe),
                                   ),
                                 );
                               },
                               child: ImageCard(
-                                imageUrl: universe.imageUrl,
-                                title: universe.title,
-                                text: universe.description,
+                                image: universe.image,
+                                title: universe.titleRu,
+                                text: universe.descriptionRu,
                               ),
                             );
                           },
@@ -72,7 +78,8 @@ class UniverseSelectScreen extends StatelessWidget {
                       } else {
                         // Состояние ошибки или другое непредвиденное состояние
                         return const Center(
-                          child: Text('Произошла ошибка при загрузке вселенных'),
+                          child:
+                              Text('Произошла ошибка при загрузке вселенных'),
                         );
                       }
                     },

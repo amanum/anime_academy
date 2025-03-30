@@ -1,3 +1,5 @@
+import 'package:anime_academy/ani_config.dart';
+import 'package:anime_academy/core/entity/universe.dart';
 import 'package:anime_academy/localization/generated/ani_localization.dart';
 import 'package:anime_academy/ui/screen/home/home_screen.dart';
 import 'package:anime_academy/ui/style/ani_colors.dart';
@@ -5,7 +7,9 @@ import 'package:anime_academy/ui/style/ani_fonts.dart';
 import 'package:flutter/material.dart';
 
 class UniverseSelectedScreen extends StatelessWidget {
-  const UniverseSelectedScreen({super.key});
+  const UniverseSelectedScreen(this.universe, {super.key});
+
+  final Universe universe;
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +19,20 @@ class UniverseSelectedScreen extends StatelessWidget {
           Expanded(
             child: Stack(
               alignment: Alignment.bottomCenter,
+              fit: StackFit.loose,
               children: [
-                Image.network(
-                  'https://strapiassets.s3.us-east-2.wasabisys.com/4_H3_Recreate_6d66ab7b1b.webp',
-                  fit: BoxFit.cover,
-                  height: double.infinity,
+                if (universe.descImage != null)Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(bottom: 1),
+                  child: Image.network(
+                    '${AniConfig.baseUrl}${universe.descImage!.url}',
+                    fit: BoxFit.cover,
+                    height: double.infinity,
+                  ),
                 ),
                 Container(
                   height: 16,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(16),
                     ),
@@ -42,7 +51,7 @@ class UniverseSelectedScreen extends StatelessWidget {
                       child: Container(
                         height: 40,
                         width: 40,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: AniColors.white, shape: BoxShape.circle),
                         child: Icon(Icons.arrow_back_rounded),
                       ),
@@ -53,28 +62,28 @@ class UniverseSelectedScreen extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(32, 8, 32, 20),
+            padding: const EdgeInsets.fromLTRB(32, 8, 32, 20),
             color: AniColors.white,
             child: Column(
               children: [
                 Text(
-                  'Наруто',
+                  universe.titleRu,
                   style: AniFonts.f_32_700,
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'Присоединяйся к Наруто и его друзьям в их приключениях и учись новому!',
+                  universe.descriptionRu ?? '',
                   style: AniFonts.f_20_500,
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 SafeArea(
                   top: false,
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomeScreen()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HomeScreen()));
                       },
                       child: Text(S.of(context).start),
                     ),

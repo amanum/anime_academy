@@ -1,5 +1,4 @@
 import 'package:anime_academy/bloc/auth/auth_bloc.dart';
-import 'package:anime_academy/ui/screen/auth/register_screen.dart';
 import 'package:anime_academy/ui/screen/universe_select/universe_select_screen.dart';
 import 'package:anime_academy/ui/style/ani_colors.dart';
 import 'package:anime_academy/ui/style/ani_fonts.dart';
@@ -8,21 +7,23 @@ import 'package:anime_academy/ui/widget/ani_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final _identifierController = TextEditingController();
+class _RegisterScreenState extends State<RegisterScreen> {
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _identifierController.dispose();
+    _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -34,12 +35,12 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         backgroundColor: AniColors.white,
         elevation: 0,
-        title: Text('Вход', style: AniFonts.f_20_700),
+        title: Text('Регистрация', style: AniFonts.f_20_700),
       ),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            // Переходим на главный экран после успешной авторизации
+            // Переходим на главный экран после успешной регистрации
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
                 builder: (_) => const UniverseSelectScreen(),
@@ -65,23 +66,38 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 const SizedBox(height: 30),
                 Text(
-                  'Добро пожаловать',
+                  'Создание аккаунта',
                   style: AniFonts.f_20_700,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Войдите в свой аккаунт',
+                  'Заполните форму для регистрации',
                   style: AniFonts.f_16_400,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40),
                 AniTextField(
-                  controller: _identifierController,
-                  labelText: 'Логин или Email',
+                  controller: _usernameController,
+                  labelText: 'Имя пользователя',
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Пожалуйста, введите логин или email';
+                      return 'Пожалуйста, введите имя пользователя';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+                AniTextField(
+                  controller: _emailController,
+                  labelText: 'Email',
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Пожалуйста, введите email';
+                    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                        .hasMatch(value)) {
+                      return 'Пожалуйста, введите корректный email';
                     }
                     return null;
                   },
@@ -94,6 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Пожалуйста, введите пароль';
+                    } else if (value.length < 6) {
+                      return 'Пароль должен содержать минимум 6 символов';
                     }
                     return null;
                   },
@@ -102,13 +120,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, state) {
                     return AniButton(
-                      text: 'Войти',
+                      text: 'Зарегистрироваться',
                       isLoading: state is AuthLoading,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           context.read<AuthBloc>().add(
-                                AuthLoginRequested(
-                                  identifier: _identifierController.text,
+                                AuthRegisterRequested(
+                                  username: _usernameController.text,
+                                  email: _emailController.text,
                                   password: _passwordController.text,
                                 ),
                               );
@@ -120,14 +139,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const RegisterScreen(),
-                      ),
-                    );
+                    Navigator.of(context).pop();
                   },
                   child: Text(
-                    'Нет аккаунта? Зарегистрироваться',
+                    'Уже есть аккаунт? Войти',
                     style: AniFonts.f_14_500.copyWith(
                       color: AniColors.primary,
                     ),
@@ -140,4 +155,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-}
+} 

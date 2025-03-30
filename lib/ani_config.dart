@@ -1,3 +1,4 @@
 class AniConfig {
-  static const String baseUrl = 'https://admin.anime-academy.kz/api';
+  static const String baseUrl = 'https://admin.anime-academy.kz';
+  static const String baseUrlApi = '$baseUrl/api';
 }

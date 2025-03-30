@@ -1,3 +1,5 @@
+import 'package:anime_academy/ani_config.dart';
+import 'package:anime_academy/core/entity/ani_image.dart';
 import 'package:anime_academy/ui/style/ani_colors.dart';
 import 'package:anime_academy/ui/style/ani_const.dart';
 import 'package:anime_academy/ui/style/ani_fonts.dart';
@@ -5,13 +7,13 @@ import 'package:flutter/material.dart';
 
 class ImageCard extends StatelessWidget {
   const ImageCard({
-    required this.imageUrl,
+    required this.image,
     required this.title,
     this.text,
     super.key,
   });
 
-  final String imageUrl;
+  final AniImage? image;
   final String title;
   final String? text;
 
@@ -30,11 +32,11 @@ class ImageCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: Image.network(
+              child: image != null ? Image.network(
                 width: double.infinity,
-                imageUrl,
+                '${AniConfig.baseUrl}${image!.url}',
                 fit: BoxFit.cover,
-              ),
+              ) : const SizedBox.shrink(),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
