@@ -1,5 +1,10 @@
 import 'package:anime_academy/bloc/app/app_bloc.dart';
+import 'package:anime_academy/bloc/auth/auth_bloc.dart';
+import 'package:anime_academy/bloc/comics/comics_bloc.dart';
+import 'package:anime_academy/bloc/test/test_bloc.dart';
+import 'package:anime_academy/core/entity/ani_test.dart';
 import 'package:anime_academy/core/entity/card_item.dart';
+import 'package:anime_academy/core/entity/comics.dart';
 import 'package:anime_academy/core/entity/universe.dart';
 import 'package:anime_academy/localization/generated/ani_localization.dart';
 import 'package:anime_academy/ui/screen/full_content_list/full_content_list_screen.dart';
@@ -31,27 +36,33 @@ class HomeScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${S.of(context).hello} ${state.user?.username} 👋',
+                            Text(
+                                '${S.of(context).hello} ${state.user?.username} 👋',
                                 style: AniFonts.f_16_400),
                             Text(S.of(context).haveANiceDay,
                                 style: AniFonts.f_28_700),
                           ],
                         ),
                       ),
-                      Container(
-                        width: 56,
-                        height: 56,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AniColors.accent,
-                        ),
-                        child: SizedBox(
-                          height: 45,
-                          width: 45,
-                          child: Image.network(
-                            'https://w7.pngwing.com/pngs/589/151/png-transparent-pixel-art-drawing-naruto-thumbnail.png',
-                            fit: BoxFit.contain,
+                      GestureDetector(
+                        onTap: () {
+                          context.read<AuthBloc>().add(const AuthLogoutRequested());
+                        },
+                        child: Container(
+                          width: 56,
+                          height: 56,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AniColors.accent,
+                          ),
+                          child: SizedBox(
+                            height: 45,
+                            width: 45,
+                            child: Image.network(
+                              'https://w7.pngwing.com/pngs/589/151/png-transparent-pixel-art-drawing-naruto-thumbnail.png',
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                       ),
@@ -59,108 +70,44 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
-              // _Section(
-              //   title: S.of(context).knowledgeBattle,
-              //   items: [
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //   ],
-              //   onAllTap: () {
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (_) => FullContentListScreen()));
-              //   },
-              // ),
-              // _Section(
-              //   title: S.of(context).comics,
-              //   items: [
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //     Universe(
-              //       id: 1,
-              //       titleRu: 'Математика',
-              //       descriptionRu: 'Экзамен на звание чунина',
-              //       imageUrl:
-              //           'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/10-ways-naruto-changed-anime-forever.jpg',
-              //     ),
-              //   ],
-              //   onAllTap: () {
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (_) => FullContentListScreen()));
-              //   },
-              // ),
+              BlocBuilder<TestBloc, TestState>(
+                builder: (context, state) {
+                  switch (state) {
+                    case TestStateLoading():
+                      return const CircularProgressIndicator();
+                    case TestStateLoaded(tests: List<AniTest> tests):
+                      return _Section(
+                        title: S.of(context).knowledgeBattle,
+                        items: tests,
+                        onAllTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => FullContentListScreen()));
+                        },
+                      );
+                    case TestStateError():
+                      return const Text('Error');
+                  }
+                },
+              ),
+              BlocBuilder<ComicsBloc, ComicsState>(
+                builder: (context, state) {
+                  switch (state) {
+                    case ComicsStateLoading():
+                      return const CircularProgressIndicator();
+                    case ComicsStateLoaded(comics: List<Comics> comics):
+                      return _Section(
+                        title: S.of(context).comics,
+                        items: comics,
+                        onAllTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => FullContentListScreen()));
+                        },
+                      );
+                    case ComicsStateError():
+                      return const Text('Error');
+                  }
+                },
+              ),
             ],
           ),
         ),
@@ -177,12 +124,12 @@ class _Section extends StatelessWidget {
   });
 
   final String title;
-  final List<Universe> items;
+  final List<CardItem> items;
   final VoidCallback onAllTap;
 
   @override
   Widget build(BuildContext context) {
-    if (items.isEmpty) return SizedBox.shrink();
+    if (items.isEmpty) return const SizedBox.shrink();
     return Column(
       children: [
         Row(
@@ -208,13 +155,13 @@ class _Section extends StatelessWidget {
               return SizedBox(
                 width: 160,
                 child: ImageCard(
-                  image: items[index].image,
-                  title: items[index].titleRu,
-                  text: items[index].descriptionRu,
+                  imageUrl: items[index].imageUrl,
+                  title: items[index].title,
+                  text: items[index].text,
                 ),
               );
             },
-            separatorBuilder: (_, __) => SizedBox(width: 12),
+            separatorBuilder: (_, __) => const SizedBox(width: 12),
           ),
         ),
       ],

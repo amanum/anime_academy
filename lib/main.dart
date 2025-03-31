@@ -2,11 +2,15 @@ import 'package:anime_academy/ani_config.dart';
 import 'package:anime_academy/app/models/key_value_store.dart';
 import 'package:anime_academy/bloc/app/app_bloc.dart';
 import 'package:anime_academy/bloc/auth/auth_bloc.dart';
+import 'package:anime_academy/bloc/comics/comics_bloc.dart';
+import 'package:anime_academy/bloc/test/test_bloc.dart';
 import 'package:anime_academy/data/auth_store_result.dart';
 import 'package:anime_academy/data/http_client.dart';
 import 'package:anime_academy/data/token_data.dart';
 import 'package:anime_academy/domain/repository/auth_repository.dart';
 import 'package:anime_academy/domain/repository/auth_store_repository.dart';
+import 'package:anime_academy/domain/repository/comics_repository.dart';
+import 'package:anime_academy/domain/repository/test_repository.dart';
 import 'package:anime_academy/domain/repository/universe_repository.dart';
 import 'package:anime_academy/localization/generated/ani_localization.dart';
 import 'package:anime_academy/services/app_state_storage.dart';
@@ -45,16 +49,18 @@ void main() async {
 
   // Инициализация репозиториев
   final authRepository = AuthRepository(
-    httpClient: httpClient, 
+    httpClient: httpClient,
     authStoreRepository: authStoreRepository,
     appStateStorage: appStateStorage,
   );
-  
+  final testRepository = TestRepository(http: httpClient);
+  final comicsRepository = ComicsRepository(http: httpClient);
+
   final universeRepository = UniverseRepository(http: httpClient);
 
   // Создаем блоки без взаимных зависимостей
   final appBloc = AppBloc(
-    storage: appStateStorage, 
+    storage: appStateStorage,
     authRepository: authRepository,
   )..add(const AppLoadEvent());
 
@@ -62,19 +68,30 @@ void main() async {
     authRepository: authRepository,
   )..add(const AuthCheckRequested());
 
+  final testBloc = TestBloc(repository: testRepository,
+  )..add(const TestEventLoad());
+
+  final comicsBloc = ComicsBloc(repository: comicsRepository,
+  )..add(const ComicsEventLoad());
+
   runApp(
     MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: authRepository),
         RepositoryProvider.value(value: universeRepository),
+        RepositoryProvider.value(value: testRepository),
+        RepositoryProvider.value(value: comicsRepository),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AuthBloc>.value(value: authBloc),
           BlocProvider<AppBloc>.value(value: appBloc),
+          BlocProvider<TestBloc>.value(value: testBloc),
+          BlocProvider<ComicsBloc>.value(value: comicsBloc),
         ],
         child: BlocBuilder<AppBloc, AppState>(
-          buildWhen: (previous, current) => previous.languageCode != current.languageCode,
+          buildWhen: (previous, current) =>
+              previous.languageCode != current.languageCode,
           builder: (context, appState) {
             return MaterialApp(
               title: 'Anime Academy',
@@ -101,7 +118,8 @@ void main() async {
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.w500,
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
