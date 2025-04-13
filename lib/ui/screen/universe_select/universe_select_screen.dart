@@ -50,11 +50,11 @@ class UniverseSelectScreen extends StatelessWidget {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: AniColors.accent,
+                              // color: AniColors.accent,
                             ),
                             child: SizedBox(
-                              height: 45,
-                              width: 45,
+                              // height: 45,
+                              // width: 45,
                               child: Image.network(
                                 'https://w7.pngwing.com/pngs/589/151/png-transparent-pixel-art-drawing-naruto-thumbnail.png',
                                 fit: BoxFit.contain,
@@ -104,6 +104,7 @@ class UniverseSelectScreen extends StatelessWidget {
                                 imageUrl: universe.image?.url,
                                 title: universe.titleRu,
                                 text: universe.descriptionRu,
+                                overlayColorString: universe.colorString,
                               ),
                             );
                           },

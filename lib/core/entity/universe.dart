@@ -18,6 +18,8 @@ class Universe implements CardItem {
   final AniImage? image;
   final AniImage? descImage;
 
+  final String? colorString;
+
   @override
   String get imageUrl => image?.url ?? '';
   @override
@@ -29,6 +31,7 @@ class Universe implements CardItem {
     required this.id, 
     required this.titleRu,
     required this.image,
+    required this.colorString,
     this.descImage,
     this.descriptionRu,
   });
@@ -41,6 +44,7 @@ class Universe implements CardItem {
       descriptionRu: json['description_ru'] as String?,
       image: AniImage.fromJson(json['img'] as Map<String, dynamic>),
       descImage: AniImage.fromJson(json['desc_img'] as Map<String, dynamic>),
+      colorString: json['color'],
     );
   }
   
@@ -52,6 +56,7 @@ class Universe implements CardItem {
       'description_ru': descriptionRu,
       'img': jsonEncode(image),
       'desc_img': jsonEncode(descImage),
+      'color': colorString,
     };
   }
 }

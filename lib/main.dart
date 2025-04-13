@@ -68,12 +68,6 @@ void main() async {
     authRepository: authRepository,
   )..add(const AuthCheckRequested());
 
-  final testBloc = TestBloc(repository: testRepository,
-  )..add(const TestEventLoad());
-
-  final comicsBloc = ComicsBloc(repository: comicsRepository,
-  )..add(const ComicsEventLoad());
-
   runApp(
     MultiRepositoryProvider(
       providers: [
@@ -86,8 +80,6 @@ void main() async {
         providers: [
           BlocProvider<AuthBloc>.value(value: authBloc),
           BlocProvider<AppBloc>.value(value: appBloc),
-          BlocProvider<TestBloc>.value(value: testBloc),
-          BlocProvider<ComicsBloc>.value(value: comicsBloc),
         ],
         child: BlocBuilder<AppBloc, AppState>(
           buildWhen: (previous, current) =>

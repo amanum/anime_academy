@@ -8,7 +8,7 @@ class Comics implements CardItem {
   final String descriptionRu;
   final AniImage image;
   final bool top;
-  final AniPdf pdf;
+  final List<AniPdf> pdfList;
 
   const Comics({
     required this.id,
@@ -16,13 +16,15 @@ class Comics implements CardItem {
     required this.descriptionRu,
     required this.image,
     required this.top,
-    required this.pdf,
+    required this.pdfList,
   });
 
   @override
   String get imageUrl => image.url;
+
   @override
   String get title => titleRu;
+
   @override
   String get text => descriptionRu;
 
@@ -33,7 +35,10 @@ class Comics implements CardItem {
       descriptionRu: json['description_ru'] as String,
       image: AniImage.fromJson(json['image'] as Map<String, dynamic>),
       top: json['top'] as bool,
-      pdf: AniPdf.fromJson(json['pdf_ru'] as Map<String, dynamic>),
+      pdfList: (json['pdf_ru'] as List<dynamic>?)
+              ?.map((item) => AniPdf.fromJson(item as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
   }
 }
