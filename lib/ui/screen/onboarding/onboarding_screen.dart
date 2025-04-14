@@ -1,10 +1,12 @@
 import 'package:anime_academy/localization/generated/ani_localization.dart';
 import 'package:anime_academy/ui/screen/onboarding/widget/onboarding_slide.dart';
 import 'package:anime_academy/ui/screen/onboarding/widget/slider_dots.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 

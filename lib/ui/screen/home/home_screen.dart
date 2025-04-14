@@ -14,9 +14,11 @@ import 'package:anime_academy/ui/screen/full_content_list/full_content_list_scre
 import 'package:anime_academy/ui/style/ani_colors.dart';
 import 'package:anime_academy/ui/style/ani_fonts.dart';
 import 'package:anime_academy/ui/widget/image_card.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage()
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 

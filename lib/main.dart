@@ -13,6 +13,7 @@ import 'package:anime_academy/domain/repository/comics_repository.dart';
 import 'package:anime_academy/domain/repository/test_repository.dart';
 import 'package:anime_academy/domain/repository/universe_repository.dart';
 import 'package:anime_academy/localization/generated/ani_localization.dart';
+import 'package:anime_academy/router/app_router.dart';
 import 'package:anime_academy/services/app_state_storage.dart';
 import 'package:anime_academy/ui/screen/auth/login_screen.dart';
 import 'package:anime_academy/ui/screen/universe_select/universe_select_screen.dart';
@@ -23,6 +24,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  final _appRouter = AppRouter();
 
   // Инициализация хранилища
   final keyValueStore = KeyValueStore();
@@ -85,7 +88,8 @@ void main() async {
           buildWhen: (previous, current) =>
               previous.languageCode != current.languageCode,
           builder: (context, appState) {
-            return MaterialApp(
+            return MaterialApp.router(
+              routerConfig: _appRouter.config(),
               title: 'Anime Academy',
               theme: ThemeData(
                 primarySwatch: Colors.indigo,
@@ -126,22 +130,22 @@ void main() async {
               ],
               supportedLocales: S.supportedLocales,
               locale: Locale(appState.languageCode),
-              home: BlocBuilder<AuthBloc, AuthState>(
-                builder: (context, state) {
-                  // Проверяем состояние авторизации
-                  if (state is AuthInitial || state is AuthLoading) {
-                    return const Scaffold(
-                      body: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    );
-                  } else if (state is AuthSuccess) {
-                    return const UniverseSelectScreen();
-                  } else {
-                    return const LoginScreen();
-                  }
-                },
-              ),
+              // home: BlocBuilder<AuthBloc, AuthState>(
+              //   builder: (context, state) {
+              //     // Проверяем состояние авторизации
+              //     if (state is AuthInitial || state is AuthLoading) {
+              //       return const Scaffold(
+              //         body: Center(
+              //           child: CircularProgressIndicator(),
+              //         ),
+              //       );
+              //     } else if (state is AuthSuccess) {
+              //       return const UniverseSelectScreen();
+              //     } else {
+              //       return const LoginScreen();
+              //     }
+              //   },
+              // ),
             );
           },
         ),
