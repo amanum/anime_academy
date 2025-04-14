@@ -28,7 +28,7 @@ class OnboardingSlide extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: AniFonts.f_18_700,
+              style: AniFonts.f_20_700,
             ),
           ),
         ],
